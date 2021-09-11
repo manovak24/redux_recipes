@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addRecipe } from '../favoriteRecipes/favoriteRecipesSlice.js';
+import { favoriteRecipesSlice } from '../favoriteRecipes/favoriteRecipesSlice.js';
 import { loadData, selectFilteredAllRecipes } from './allRecipesSlice.js';
 import FavoriteButton from "../../components/FavoriteButton";
 import Recipe from "../../components/Recipe";
 
+const { addRecipe } = favoriteRecipesSlice.actions;
 const favoriteIconURL = 'https://static-assets.codecademy.com/Courses/Learn-Redux/Recipes-App/icons/favorite.svg';
 
 export const AllRecipes = () => {
@@ -15,7 +16,7 @@ export const AllRecipes = () => {
   const onFirstRender = () => {
     dispatch(loadData());
   }
-  useEffect(onFirstRender, );
+  useEffect(onFirstRender, []);
   
   const onAddRecipeHandler = (recipe) => {
     dispatch(addRecipe(recipe));
@@ -36,5 +37,6 @@ export const AllRecipes = () => {
     </div>
   );
 };
+
 
 
